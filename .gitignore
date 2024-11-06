@@ -33,3 +33,6 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+
+### VS Code ###
+.vscode/
