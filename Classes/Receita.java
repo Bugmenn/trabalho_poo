@@ -2,21 +2,21 @@ package Classes;
 
 import java.time.LocalDate;
 
-import Enum.CategoriaReceita;
+import Enum.Categoria;
 
-public class Receita {
-    private CategoriaReceita categoria;
+public class Receita extends MovimentoFinanceiro {
+    private Categoria categoria;
     private LocalDate data;
 
-    public Receita(CategoriaReceita categoria, LocalDate data) {
+    public Receita(Categoria categoria, LocalDate data) {
         setCategoria(categoria);
     }
 
-    public CategoriaReceita getCategoria() {
+    public Categoria getCategoria() {
         return this.categoria;
     }
 
-    public void setCategoria(CategoriaReceita categoria) {
+    public void setCategoria(Categoria categoria) {
         if (categoria == null) {
             throw new IllegalArgumentException("Receita deve possuir categoria");
         }
