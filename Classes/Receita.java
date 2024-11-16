@@ -1,14 +1,16 @@
 package Classes;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import Enum.Categoria;
 
 public class Receita extends MovimentoFinanceiro {
     private Categoria categoria;
-    private LocalDate data;
+    private LocalDateTime data;
 
-    public Receita(Categoria categoria, LocalDate data) {
+    public Receita(Categoria categoria, LocalDateTime data) {
+        super(categoria, data);
         setCategoria(categoria);
     }
 
@@ -23,11 +25,11 @@ public class Receita extends MovimentoFinanceiro {
         this.categoria = categoria;
     }
 
-    public LocalDate getData() {
+    public LocalDateTime getData() {
         return this.data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(LocalDateTime data) {
         if (data == null) {
             throw new IllegalArgumentException("Receita deve possuir data");
         }
