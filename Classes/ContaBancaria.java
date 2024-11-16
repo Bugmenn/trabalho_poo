@@ -3,7 +3,7 @@ package Classes;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class ContaBancaria implements GerenciamentoContaBancaria {
+public class ContaBancaria implements IGerenciamentoContaBancaria {
 
     MovimentoFinanceiro movimentoFinanceiro;
     Double saldo;
