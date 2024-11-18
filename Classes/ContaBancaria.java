@@ -1,10 +1,13 @@
 package Classes;
 
+import Enum.Categoria;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ContaBancaria implements IGerenciamentoContaBancaria {
 
@@ -68,6 +71,42 @@ public class ContaBancaria implements IGerenciamentoContaBancaria {
             
         } catch (IOException e) {
             System.err.println("Erro ao criar o arquivo CSV: " + e.getMessage());
+        }
+    }
+
+    public void lerArquivo(File arquivo) {
+        try {
+            Scanner arquivoScanner = new Scanner(arquivo, "UTF-8");
+            
+            // verifica se tem mais linhas do que só o cabeçalho
+            if (arquivoScanner.hasNextLine()) {
+                String cabecalho = arquivoScanner.nextLine(); // pula o cabeçalho
+                if (!cabecalho.equals("tipo;nome;data;categoria;valor")) {
+                    throw new IllegalArgumentException("Arquivo não é compativel");
+                }
+
+                while (arquivoScanner.hasNextLine()) {
+                    String linha = arquivoScanner.nextLine(); // pega a proxima linha com informações
+                    String[] informacoes = linha.split(";"); // separa a string onde tem ";" em listas
+                    
+                    String nome = informacoes[1];
+                    LocalDateTime data = LocalDateTime.parse(informacoes[2]);
+                    Categoria categoria = Categoria.valueOf(informacoes[3]);
+                    Double valor = Double.valueOf(informacoes[4]);
+    
+                    MovimentoFinanceiro movimento = informacoes[0].equals("despesa") ? new Despesa(nome, categoria, data, valor)
+                        :   new Receita(nome, categoria, data, valor);
+                    
+                    this.incluir(movimento);
+                }
+                
+                arquivoScanner.close();
+            }
+            
+        } catch (FileNotFoundException  e) {
+            System.out.println("Arquivo não encontrado");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e);
         }
     }
 }
