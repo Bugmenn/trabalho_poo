@@ -50,6 +50,4 @@ public class Receita extends MovimentoFinanceiro {
     public void setValor(Double valor) {
         this.valor = valor;
     }
-
-    
 }

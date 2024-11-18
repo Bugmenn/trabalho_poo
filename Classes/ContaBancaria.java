@@ -57,9 +57,8 @@ public class ContaBancaria implements IGerenciamentoContaBancaria {
 
             // dados
             for (MovimentoFinanceiro movimento : movimentoFinanceiro) {
-                String tipo = movimento instanceof Despesa ? "despesa" : "receita";
                 arquivoEscrita.println(
-                    tipo+";"+
+                    movimento.getClass().getSimpleName().toLowerCase()+";"+
                     movimento.getNome()+";"+
                     movimento.getData().toString()+";"+
                     movimento.getCategoria()+";"+
@@ -87,17 +86,25 @@ public class ContaBancaria implements IGerenciamentoContaBancaria {
 
                 while (arquivoScanner.hasNextLine()) {
                     String linha = arquivoScanner.nextLine(); // pega a proxima linha com informações
-                    String[] informacoes = linha.split(";"); // separa a string onde tem ";" em listas
+                    String[] informacoes = linha.split(";"); // separa a string onde tem ";" em uma lista
                     
+                    String tipo = informacoes[0];
                     String nome = informacoes[1];
                     LocalDateTime data = LocalDateTime.parse(informacoes[2]);
                     Categoria categoria = Categoria.valueOf(informacoes[3]);
                     Double valor = Double.valueOf(informacoes[4]);
-    
-                    MovimentoFinanceiro movimento = informacoes[0].equals("despesa") ? new Despesa(nome, categoria, data, valor)
-                        :   new Receita(nome, categoria, data, valor);
                     
-                    this.incluir(movimento);
+                    MovimentoFinanceiro movimento;
+
+                    if (tipo.equals("despesa")) {
+                        movimento = new Despesa(nome, categoria, data, valor);
+                    } else {
+                        movimento = new Receita(nome, categoria, data, valor);
+                    }
+                    
+                    if (!this.movimentoFinanceiro.contains(movimento)) {
+                        this.incluir(movimento);
+                    }
                 }
                 
                 arquivoScanner.close();

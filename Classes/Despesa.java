@@ -44,5 +44,4 @@ public class Despesa extends MovimentoFinanceiro {
     public void setValor(Double valor) {
         this.valor = valor;
     }
-    
 }

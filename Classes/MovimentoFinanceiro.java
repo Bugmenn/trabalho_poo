@@ -57,5 +57,4 @@ public abstract class MovimentoFinanceiro {
         }
         this.valor = valor;
     }
-
 }
