@@ -1,17 +1,16 @@
 package Classes;
 
-import java.time.LocalDate;
+import Enum.Categoria;
 import java.time.LocalDateTime;
 
-import Enum.Categoria;
-
 public class Receita extends MovimentoFinanceiro {
+    private String nome;
+    private LocalDateTime data = LocalDateTime.now();
     private Categoria categoria;
-    private LocalDateTime data;
+    private Double valor;
 
-    public Receita(Categoria categoria, LocalDateTime data) {
-        super(categoria, data);
-        setCategoria(categoria);
+    public Receita(String nome, Categoria categoria, LocalDateTime data, Double valor) {
+        super(nome, categoria, data, valor);
     }
 
     public Categoria getCategoria() {
@@ -35,4 +34,22 @@ public class Receita extends MovimentoFinanceiro {
         }
         this.data = data;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
+    }
+
+    
 }

@@ -1,7 +1,6 @@
 package Classes;
-import java.time.LocalDateTime;
-
 import Enum.Categoria;
+import java.time.LocalDateTime;
 
 public abstract class MovimentoFinanceiro {
 
@@ -10,8 +9,30 @@ public abstract class MovimentoFinanceiro {
     private Categoria categoria;
     private Double valor;
 
-    public MovimentoFinanceiro(Categoria categoria, LocalDateTime data) {
+    public MovimentoFinanceiro(String nome, Categoria categoria, LocalDateTime data, Double valor) {
+        this.setNome(nome);
+        this.setCategoria(categoria);
+        this.setData(data);
+        this.setValor(valor);
+    }
+    
+    public String getNome() {
+        return nome;
+    }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public LocalDateTime getData() {
+        return this.data;
+    }
+
+    public void setData(LocalDateTime data) {
+        if (data == null) {
+            throw new IllegalArgumentException("Receita deve possuir data");
+        }
+        this.data = data;
     }
 
     public Categoria getCategoria() {
@@ -25,14 +46,16 @@ public abstract class MovimentoFinanceiro {
         this.categoria = categoria;
     }
 
-    public LocalDateTime getData() {
-        return this.data;
+
+    public Double getValor() {
+        return valor;
     }
 
-    public void setData(LocalDateTime data) {
-        if (data == null) {
-            throw new IllegalArgumentException("Receita deve possuir data");
+    public void setValor(Double valor) {
+        if (valor < 0) {
+            throw new IllegalArgumentException("valor invalido");
         }
-        this.data = data;
+        this.valor = valor;
     }
+
 }
