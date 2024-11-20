@@ -1,5 +1,5 @@
-package Classes;
-import Enum.Categoria;
+package models;
+import models.enums.Categoria;
 import java.time.LocalDate;
 import java.util.Objects;
 

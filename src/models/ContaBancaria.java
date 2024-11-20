@@ -1,6 +1,6 @@
-package Classes;
+package models;
 
-import Enum.Categoria;
+import models.enums.Categoria;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
