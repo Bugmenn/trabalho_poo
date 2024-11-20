@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-//import custom.component.JButtonCustom;
+import custom.component.JButtonCustom;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -76,10 +76,10 @@ public class Tela extends JFrame {
 		contentPane.add(panMenu);
 		panMenu.setLayout(null);
 		
-		//JButtonCustom btnCadastrar = new JButtonCustom();
-		//btnCadastrar.setText("Cadastrar");
-		//btnCadastrar.setBounds(24, 175, 141, 39);
-		//panMenu.add(btnCadastrar);
+		JButtonCustom btnCadastrar = new JButtonCustom();
+		btnCadastrar.setText("Cadastrar");
+		btnCadastrar.setBounds(24, 175, 141, 39);
+		panMenu.add(btnCadastrar);
 		
 		JButton btnImportar = new JButton("Importar Arquivo");
 		btnImportar.setForeground(new Color(0, 0, 0));
