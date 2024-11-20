@@ -1,38 +1,15 @@
 package Classes;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import Enum.Categoria;
+import java.time.LocalDate;
 
 public class Receita extends MovimentoFinanceiro {
+    private String nome;
+    private LocalDate data;
     private Categoria categoria;
-    private LocalDateTime data;
+    private Double valor;
 
-    public Receita(Categoria categoria, LocalDateTime data) {
-        super(categoria, data);
-        setCategoria(categoria);
-    }
-
-    public Categoria getCategoria() {
-        return this.categoria;
-    }
-
-    public void setCategoria(Categoria categoria) {
-        if (categoria == null) {
-            throw new IllegalArgumentException("Receita deve possuir categoria");
-        }
-        this.categoria = categoria;
-    }
-
-    public LocalDateTime getData() {
-        return this.data;
-    }
-
-    public void setData(LocalDateTime data) {
-        if (data == null) {
-            throw new IllegalArgumentException("Receita deve possuir data");
-        }
-        this.data = data;
+    public Receita(String nome, Categoria categoria, LocalDate data, Double valor) {
+        super(nome, categoria, data, valor);
     }
 }

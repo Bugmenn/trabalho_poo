@@ -1,16 +1,15 @@
 package Classes;
 
+import Enum.Categoria;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import Enum.Categoria;
-
-import Enum.Categoria;
 
 public class Despesa extends MovimentoFinanceiro {
-    private Categoria categoria;
+    private String nome;
     private LocalDate data;
+    private Categoria categoria;
+    private Double valor;
 
-    public Despesa(Categoria categoria, LocalDateTime data) {
-        super(categoria, data);
+    public Despesa(String nome, Categoria categoria, LocalDate data, Double valor) {
+        super(nome, categoria, data, valor);
     }
 }

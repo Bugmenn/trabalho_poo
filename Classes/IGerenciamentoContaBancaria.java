@@ -1,6 +1,5 @@
 package Classes;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public interface IGerenciamentoContaBancaria {
@@ -9,7 +8,7 @@ public interface IGerenciamentoContaBancaria {
 
     public void incluir(MovimentoFinanceiro movimentoFinanceiro);
 
-    public double consultarSaldo();
+    public double consultarSaldoAtual();
 
-    public double consultarSaldoPeriodo(LocalDateTime date);
+    public double consultarSaldoPeriodo();
 }
