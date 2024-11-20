@@ -1,6 +1,6 @@
-package Classes;
+package models;
 
-import Enum.Categoria;
+import models.enums.Categoria;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
