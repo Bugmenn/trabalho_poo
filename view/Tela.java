@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import custom.component.JButtonCustom;
+
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -15,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
+import javax.swing.JFormattedTextField;
 
 public class Tela extends JFrame {
 
@@ -52,7 +56,7 @@ public class Tela extends JFrame {
 		contentPane.setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(190, 140, 414, 189);
+		tabbedPane.setBounds(190, -25, 573, 435);
 		contentPane.add(tabbedPane);
 
 		
@@ -78,39 +82,35 @@ public class Tela extends JFrame {
 		contentPane.add(panMenu);
 		panMenu.setLayout(null);
 		
-		JButton btnNewButton_1 = new JButton("Cadastrar");
-		btnNewButton_1.setBounds(24, 175, 141, 29);
-		panMenu.add(btnNewButton_1);
+		JButtonCustom btnCadastrar = new JButtonCustom();
+		btnCadastrar.setText("Cadastrar");
+		btnCadastrar.setBounds(24, 175, 141, 39);
+		panMenu.add(btnCadastrar);
 		
-		JButton btnNewButton = new JButton("Importar Arquivo");
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setBounds(24, 121, 141, 29);
-		panMenu.add(btnNewButton);
+		JButton btnImportar = new JButton("Importar Arquivo");
+		btnImportar.setForeground(new Color(0, 0, 0));
+		btnImportar.setBackground(new Color(255, 255, 255));
+		btnImportar.setBounds(24, 121, 141, 29);
+		panMenu.add(btnImportar);
 		
-		JButton btnNewButton_2 = new JButton("Listar");
-		btnNewButton_2.setBounds(24, 228, 141, 29);
-		panMenu.add(btnNewButton_2);
+		JButton btnListar = new JButton("Listar");
+		btnListar.setBounds(24, 228, 141, 29);
+		panMenu.add(btnListar);
 		
 		JLabel lblNewLabel = new JLabel("Escolha uma opção do Menu");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBounds(24, 40, 143, 23);
 		panMenu.add(lblNewLabel);
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaListar telaListar2 = new TelaListar();
-				telaListar2.setBounds(10, 108, 414, 241);
-				contentPane.add(telaListar2);
-			}
-		});
 		
-		btnNewButton.addActionListener(new ActionListener() {
+ 
+
+		btnImportar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(0);
 			}
 		});
 		
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				tabbedPane.setSelectedIndex(1);
 			}
@@ -121,16 +121,5 @@ public class Tela extends JFrame {
 		//listar.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("New radio button");
-		rdbtnNewRadioButton_1.setBounds(17, 7, 109, 23);
-		panel.add(rdbtnNewRadioButton_1);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("New radio button");
-		rdbtnNewRadioButton.setBounds(17, 33, 109, 23);
-		panel.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("New radio button");
-		rdbtnNewRadioButton_2.setBounds(17, 59, 109, 23);
-		panel.add(rdbtnNewRadioButton_2);
 	}
 }
