@@ -10,6 +10,7 @@ import javax.swing.text.MaskFormatter;
 import custom.component.JButtonCustom;
 
 import javax.swing.JLabel;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -21,8 +22,10 @@ import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollBar;
+import java.awt.ScrollPane;
 
-public class Tela extends JFrame {
+public class TelaInicial extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -35,7 +38,7 @@ public class Tela extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Tela frame = new Tela();
+					TelaInicial frame = new TelaInicial();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +50,7 @@ public class Tela extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Tela() {
+	public TelaInicial() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 779, 449);
 		contentPane = new JPanel();
@@ -65,25 +68,67 @@ public class Tela extends JFrame {
 		MaskFormatter mascaraData = null;
 
 		try {
-			mascaraDinheiro = new MaskFormatter("R$ ##,##");
+			mascaraDinheiro = new MaskFormatter("R$ ");
 			mascaraData = new MaskFormatter("##/##/####");
 			mascaraDinheiro.setPlaceholderCharacter('_');
 			mascaraData.setPlaceholderCharacter('_');
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		JPanel panImportar = new JPanel();
-		panImportar.setBackground(new Color(192, 192, 192));
+		panImportar.setBackground(new Color(212, 212, 212));
 		tabbedPane.addTab("New tab", null, panImportar, "Importar arquivo");
+		panImportar.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
+		JLabel lblNewLabel_1 = new JLabel("Importe o seu arquivo .csv com suas despesas e receitas");
+		lblNewLabel_1.setForeground(new Color(64, 128, 128));
+		lblNewLabel_1.setBackground(new Color(64, 128, 128));
+		lblNewLabel_1.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(35, 27, 510, 60);
 		panImportar.add(lblNewLabel_1);
 		
 		JPanel panListar = new JPanel();
 		panListar.setBackground(new Color(192, 192, 192));
 		tabbedPane.addTab("New tab", null, panListar, null);
+		panListar.setLayout(null);
+		
+		JLabel lblNewLabel_7 = new JLabel("Escolha uma opção de listagem");
+		lblNewLabel_7.setForeground(new Color(64, 128, 128));
+		lblNewLabel_7.setFont(new Font("Dialog", Font.BOLD, 22));
+		lblNewLabel_7.setBounds(120, 24, 398, 23);
+		panListar.add(lblNewLabel_7);
+		
+		JRadioButton rdbtnDespesaListar = new JRadioButton("Despesa");
+		rdbtnDespesaListar.setSelected(true);
+		rdbtnDespesaListar.setBounds(38, 81, 81, 23);
+		panListar.add(rdbtnDespesaListar);
+		
+		JRadioButton rdbtnAmbasListar = new JRadioButton("Ambas");
+		rdbtnAmbasListar.setBounds(223, 81, 81, 23);
+		panListar.add(rdbtnAmbasListar);
+		
+		JRadioButton rdbtnReceitaListar = new JRadioButton("Receita");
+		rdbtnReceitaListar.setBounds(130, 81, 81, 23);
+		panListar.add(rdbtnReceitaListar);
+		
+		ButtonGroup groupListar = new ButtonGroup();
+		groupListar.add(rdbtnDespesaListar);
+		groupListar.add(rdbtnReceitaListar);
+		groupListar.add(rdbtnAmbasListar);
+		
+		JButton btnListar_1 = new JButton("Listar");
+		btnListar_1.setBackground(new Color(128, 255, 0));
+		btnListar_1.setBounds(329, 81, 189, 23);
+		panListar.add(btnListar_1);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(384, 193, 17, 48);
+		panListar.add(scrollBar);
+		
+		ScrollPane scrollPane = new ScrollPane();
+		scrollPane.setBounds(144, 182, 100, 100);
+		panListar.add(scrollPane);
 		
 				
 				JPanel panCadastrar = new JPanel();
@@ -135,27 +180,47 @@ public class Tela extends JFrame {
 				lblNewLabel_6.setForeground(new Color(64, 128, 128));
 				lblNewLabel_6.setBackground(new Color(64, 128, 128));
 				lblNewLabel_6.setFont(new Font("Sitka Small", Font.BOLD, 22));
-				lblNewLabel_6.setBounds(88, 20, 404, 34);
+				lblNewLabel_6.setBounds(106, 22, 404, 34);
 				panCadastrar.add(lblNewLabel_6);
 				
 				JRadioButton rdBtnDespesa = new JRadioButton("Despesa");
+				rdBtnDespesa.setSelected(true);
 				rdBtnDespesa.setFont(new Font("Sitka Small", Font.PLAIN, 18));
 				rdBtnDespesa.setBounds(158, 105, 130, 32);
 				panCadastrar.add(rdBtnDespesa);
 				
-				JRadioButton rdBtnReceita = new JRadioButton(" ");
+				JRadioButton rdBtnReceita = new JRadioButton("Receita");
 				rdBtnReceita.setFont(new Font("Sitka Small", Font.PLAIN, 18));
 				rdBtnReceita.setBounds(353, 105, 139, 32);
 				panCadastrar.add(rdBtnReceita);
+				
+				ButtonGroup groupCadastrar = new ButtonGroup();
+				groupCadastrar.add(rdBtnDespesa);
+				groupCadastrar.add(rdBtnReceita);
+				
+				JLabel lblNewLabel_2_1 = new JLabel("Tipo:");
+				lblNewLabel_2_1.setFont(new Font("Dialog", Font.PLAIN, 18));
+				lblNewLabel_2_1.setBounds(25, 99, 120, 45);
+				panCadastrar.add(lblNewLabel_2_1);
+				
+				JButton btnSalvarMovimentoFinanceiro = new JButton("Salvar");
+				btnSalvarMovimentoFinanceiro.setBackground(new Color(128, 255, 0));
+				btnSalvarMovimentoFinanceiro.setBounds(119, 330, 120, 23);
+				panCadastrar.add(btnSalvarMovimentoFinanceiro);
+				
+				JButton btnCancelar = new JButton("Cancelar");
+				btnCancelar.setBackground(new Color(255, 0, 0));
+				btnCancelar.setBounds(319, 330, 130, 23);
+				panCadastrar.add(btnCancelar);
 		
 		JPanel panMenu = new JPanel();
-		panMenu.setBackground(new Color(0, 128, 128));
+		panMenu.setBackground(new Color(68, 149, 157));
 		panMenu.setForeground(new Color(255, 128, 64));
 		panMenu.setBounds(0, 0, 190, 410);
 		contentPane.add(panMenu);
 		panMenu.setLayout(null);
 		
-		JButtonCustom btnCadastrar = new JButtonCustom();
+		JButton btnCadastrar = new JButton();
 		btnCadastrar.setText("Cadastrar");
 		btnCadastrar.setBounds(24, 175, 141, 39);
 		panMenu.add(btnCadastrar);
@@ -183,6 +248,25 @@ public class Tela extends JFrame {
 			}
 		});
 		
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(2);
+			}
+		});
+		
+		btnListar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tabbedPane.setSelectedIndex(1);
+			}
+		});
+		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtDescricao.setText("");
+				txtfData.setText("");
+				txtfValor.setText("");
+			}
+		});
 		
 		
 		JPanel panel = new JPanel();
