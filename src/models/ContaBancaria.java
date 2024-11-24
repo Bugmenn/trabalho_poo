@@ -87,6 +87,22 @@ public class ContaBancaria implements IGerenciamentoContaBancaria {
         }
         return valor;
     }
+    
+    public double consultarSaldo(LocalDate dataFiltro) {
+    	double valor = 0;
+        for (MovimentoFinanceiro movi : movimentoFinanceiro) {
+        	
+        	if(movi.getData().compareTo(dataFiltro) <= 0 || dataFiltro == null) {
+        		if (movi instanceof Despesa) {
+                    valor -= movi.getValor();
+                } else {
+                    valor += movi.getValor();
+                }
+        	}
+            
+        }
+        return valor;
+    }
 
     /**
      * cria o arquivo e salva as informações nele

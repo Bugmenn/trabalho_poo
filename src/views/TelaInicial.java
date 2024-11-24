@@ -88,6 +88,11 @@ public class TelaInicial extends JFrame {
 		lblNewLabel_1.setBounds(35, 27, 510, 60);
 		panImportar.add(lblNewLabel_1);
 		
+		JButton btnNewButton = new JButton("Selecionar Arquivo");
+		btnNewButton.setBackground(new Color(84, 167, 167));
+		btnNewButton.setBounds(190, 205, 202, 23);
+		panImportar.add(btnNewButton);
+		
 		JPanel panListar = new JPanel();
 		panListar.setBackground(new Color(192, 192, 192));
 		tabbedPane.addTab("New tab", null, panListar, null);
@@ -96,19 +101,22 @@ public class TelaInicial extends JFrame {
 		JLabel lblNewLabel_7 = new JLabel("Escolha uma opção de listagem");
 		lblNewLabel_7.setForeground(new Color(64, 128, 128));
 		lblNewLabel_7.setFont(new Font("Dialog", Font.BOLD, 22));
-		lblNewLabel_7.setBounds(120, 24, 398, 23);
+		lblNewLabel_7.setBounds(120, 24, 398, 29);
 		panListar.add(lblNewLabel_7);
 		
 		JRadioButton rdbtnDespesaListar = new JRadioButton("Despesa");
+		rdbtnDespesaListar.setFont(new Font("Dialog", Font.PLAIN, 13));
 		rdbtnDespesaListar.setSelected(true);
 		rdbtnDespesaListar.setBounds(38, 81, 81, 23);
 		panListar.add(rdbtnDespesaListar);
 		
 		JRadioButton rdbtnAmbasListar = new JRadioButton("Ambas");
+		rdbtnAmbasListar.setFont(new Font("Dialog", Font.PLAIN, 13));
 		rdbtnAmbasListar.setBounds(223, 81, 81, 23);
 		panListar.add(rdbtnAmbasListar);
 		
 		JRadioButton rdbtnReceitaListar = new JRadioButton("Receita");
+		rdbtnReceitaListar.setFont(new Font("Dialog", Font.PLAIN, 13));
 		rdbtnReceitaListar.setBounds(130, 81, 81, 23);
 		panListar.add(rdbtnReceitaListar);
 		
@@ -118,7 +126,7 @@ public class TelaInicial extends JFrame {
 		groupListar.add(rdbtnAmbasListar);
 		
 		JButton btnListar_1 = new JButton("Listar");
-		btnListar_1.setBackground(new Color(128, 255, 0));
+		btnListar_1.setBackground(new Color(84, 167, 167));
 		btnListar_1.setBounds(329, 81, 189, 23);
 		panListar.add(btnListar_1);
 		
@@ -129,6 +137,21 @@ public class TelaInicial extends JFrame {
 		ScrollPane scrollPane = new ScrollPane();
 		scrollPane.setBounds(144, 182, 100, 100);
 		panListar.add(scrollPane);
+		
+		JFormattedTextField txtfDataFiltroSaldo = new JFormattedTextField(mascaraData);
+		txtfDataFiltroSaldo.setFont(new Font("Dialog", Font.PLAIN, 13));
+		txtfDataFiltroSaldo.setBounds(212, 128, 92, 20);
+		panListar.add(txtfDataFiltroSaldo);
+		
+		JLabel lblNewLabel_8 = new JLabel("Consultar saldo até a data:");
+		lblNewLabel_8.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblNewLabel_8.setBounds(38, 131, 173, 14);
+		panListar.add(lblNewLabel_8);
+		
+		JButton btnConsultarSaldo = new JButton("Consultar Saldo");
+		btnConsultarSaldo.setBackground(new Color(84, 167, 167));
+		btnConsultarSaldo.setBounds(329, 127, 189, 23);
+		panListar.add(btnConsultarSaldo);
 		
 				
 				JPanel panCadastrar = new JPanel();
@@ -234,11 +257,6 @@ public class TelaInicial extends JFrame {
 		JButton btnListar = new JButton("Listar");
 		btnListar.setBounds(24, 228, 141, 29);
 		panMenu.add(btnListar);
-		
-		JLabel lblNewLabel = new JLabel("Escolha uma opção do Menu");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBounds(24, 40, 143, 23);
-		panMenu.add(lblNewLabel);
 		
  
 
