@@ -5,25 +5,31 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.MaskFormatter;
 
 import custom.component.JButtonCustom;
+import models.ContaBancaria;
 
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.ParseException;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFormattedTextField;
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollBar;
 import java.awt.ScrollPane;
+import javax.swing.DefaultComboBoxModel;
+import models.enums.Categoria;
 
 public class TelaInicial extends JFrame {
 
@@ -92,6 +98,20 @@ public class TelaInicial extends JFrame {
 		btnNewButton.setBackground(new Color(84, 167, 167));
 		btnNewButton.setBounds(190, 205, 202, 23);
 		panImportar.add(btnNewButton);
+		
+		JLabel lblMensangemImportacaoSucesso = new JLabel("Arquivo importado com sucesso!");
+		lblMensangemImportacaoSucesso.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblMensangemImportacaoSucesso.setForeground(new Color(0, 128, 0));
+		lblMensangemImportacaoSucesso.setBounds(202, 250, 189, 14);
+		panImportar.add(lblMensangemImportacaoSucesso);
+		lblMensangemImportacaoSucesso.setVisible(false);
+		
+		JLabel lblMensangemImportacaoErro = new JLabel("Arquivo não importado");
+		lblMensangemImportacaoErro.setForeground(new Color(255, 0, 0));
+		lblMensangemImportacaoErro.setFont(new Font("Dialog", Font.PLAIN, 13));
+		lblMensangemImportacaoErro.setBounds(226, 275, 149, 14);
+		panImportar.add(lblMensangemImportacaoErro);
+		lblMensangemImportacaoErro.setVisible(false);
 		
 		JPanel panListar = new JPanel();
 		panListar.setBackground(new Color(192, 192, 192));
@@ -206,7 +226,7 @@ public class TelaInicial extends JFrame {
 				lblNewLabel_6.setBounds(106, 22, 404, 34);
 				panCadastrar.add(lblNewLabel_6);
 				
-				JRadioButton rdBtnDespesa = new JRadioButton("Despesa");
+				JRadioButton rdBtnDespesa = new JRadioButton("Despesa");				
 				rdBtnDespesa.setSelected(true);
 				rdBtnDespesa.setFont(new Font("Sitka Small", Font.PLAIN, 18));
 				rdBtnDespesa.setBounds(158, 105, 130, 32);
@@ -245,7 +265,7 @@ public class TelaInicial extends JFrame {
 		
 		JButton btnCadastrar = new JButton();
 		btnCadastrar.setText("Cadastrar");
-		btnCadastrar.setBounds(24, 175, 141, 39);
+		btnCadastrar.setBounds(24, 175, 141, 29);
 		panMenu.add(btnCadastrar);
 		
 		JButton btnImportar = new JButton("Importar Arquivo");
@@ -286,6 +306,43 @@ public class TelaInicial extends JFrame {
 			}
 		});
 		
+		rdBtnDespesa.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cmbCategoria.setModel(new DefaultComboBoxModel(new String[] {"ALIMENTACAO", "EDUCACAO", "ENTRETENIMENTO", 
+																			"FERIAS", "RESIDENCIA", "SAUDE", "TRANSPORTE", "OUTROS"}));
+			}
+		});
+		
+		rdBtnReceita.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cmbCategoria.setModel(new DefaultComboBoxModel(new String[] {"SALARIO", "FERIAS", "DECIMO TERCEIRO", "OUTROS"}));
+			}
+		});
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ContaBancaria conta = new ContaBancaria();
+				
+				FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("selecione o arquivo csv", "csv");
+		        JFileChooser chooser = new JFileChooser();
+		        chooser.setFileFilter(fileFilter);
+		        
+		        int retorno = chooser.showOpenDialog(chooser);
+		        File arquivo = chooser.getSelectedFile();
+		        
+		        if (retorno == JFileChooser.APPROVE_OPTION && arquivo.getName().toLowerCase().endsWith(".csv")) {
+		            conta.lerArquivo(arquivo);
+		            conta.salvarArquivo(arquivo);
+		            
+		            lblMensangemImportacaoSucesso.setVisible(true);
+		            lblMensangemImportacaoErro.setVisible(false);
+		            return;
+		        }
+				
+		        lblMensangemImportacaoSucesso.setVisible(false);
+		        lblMensangemImportacaoErro.setVisible(true);
+			}
+		});
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(22, 42, 414, 213);
