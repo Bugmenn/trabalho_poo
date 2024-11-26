@@ -1,6 +1,5 @@
 package models;
 
-import models.enums.Categoria;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -9,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
+import models.enums.Categoria;
 
 public class ContaBancaria implements IGerenciamentoContaBancaria {
 
@@ -88,6 +88,11 @@ public class ContaBancaria implements IGerenciamentoContaBancaria {
         return valor;
     }
     
+    /**
+     * filtra o saldo com base na data informada
+     * @param dataFiltro data na qual será feito o filtro
+     * @return o valor
+     */
     public double consultarSaldo(LocalDate dataFiltro) {
     	double valor = 0;
         for (MovimentoFinanceiro movi : movimentoFinanceiro) {
