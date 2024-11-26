@@ -30,6 +30,7 @@ public class App {
         if (retorno == JFileChooser.APPROVE_OPTION && arquivo.getName().toLowerCase().endsWith(".csv")) {
             conta.lerArquivo(arquivo);
             conta.salvarArquivo(arquivo);
+            
         }
 
         String textoData = "01/01/2024";

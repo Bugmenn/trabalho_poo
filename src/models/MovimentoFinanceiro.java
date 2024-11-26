@@ -45,7 +45,7 @@ public abstract class MovimentoFinanceiro {
 
     public void setCategoria(Categoria categoria) {
         if (categoria == null) {
-            throw new IllegalArgumentException("Receita deve possuir categoria");
+            throw new IllegalArgumentException("Categoria não pode estar vazia");
         }
         this.categoria = categoria;
     }
@@ -56,8 +56,8 @@ public abstract class MovimentoFinanceiro {
     }
 
     public void setValor(Double valor) {
-        if (valor < 0) {
-            throw new IllegalArgumentException("valor invalido");
+        if (valor < 0  || valor == null) {
+            throw new IllegalArgumentException("Valor inválido");
         }
         this.valor = valor;
     }
@@ -81,4 +81,15 @@ public abstract class MovimentoFinanceiro {
     public int hashCode() {
         return Objects.hash(nome, data, categoria, valor);
     }
+    
+    @Override
+    public String toString() {
+    	return "Descrição: " + nome + "\n" +
+    			"Data: " + data + "\n" +
+    			"Categoria: " + categoria + "\n" +
+    			"Valor: " + valor + "\n" 
+    			;
+
+    }
+
 }
